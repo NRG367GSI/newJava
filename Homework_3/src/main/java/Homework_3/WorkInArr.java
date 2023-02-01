@@ -33,10 +33,6 @@ public class WorkInArr {
         return Collections.max(arr);
     }
 
-    public  static  void outWorkInArr() {
-
-    }
-
     public static void arithmeticMean(ArrayList<Integer> arr) {
         double average = arr.stream().mapToInt(args->args).average().getAsDouble();
         System.out.println("average = " + average);

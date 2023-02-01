@@ -25,13 +25,7 @@ public class Main {
         System.out.printf("max = %d \n", seq.maxArr);
 
         WorkInArr.arithmeticMean(sequence.arr);
-
-
-
-
     }
-
-
 }
 
 
