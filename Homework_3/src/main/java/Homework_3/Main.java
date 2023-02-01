@@ -5,11 +5,11 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        // Task_1
         WorkInArr sequence = new WorkInArr();
         sequence.arr = WorkInArr.CreateArr(5,0,10);
         System.out.println(sequence.arr);
 
-        // Task_1
         sequence.evenNum = WorkInArr.removeEvenNum(sequence.arr);
         System.out.println(sequence.evenNum);
 
