@@ -1,115 +1,78 @@
 package Homework_4;
 
-import java.io.*;
 import java.util.*;
 
-
-/*
-1. Реализовать консольное приложение, которое:
-Принимает от пользователя и “запоминает” строки.
-Если введено print, выводит строки так, чтобы последняя введенная была первой в списке, а первая - последней.
-Если введено revert, удаляет предыдущую введенную строку из памяти.
-
-2. Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список.
- */
 public class Task_1 {
 
-    public Deque<String> sequence = new ArrayDeque<>();
-    public int num;
+    static ArrayList<String> arrayList = new ArrayList<>();
 
-
-
-
-
-
-    public  static void menu() {
+    public static void menu() {
         Scanner scan = new Scanner(System.in);
         String[] list = {"print", "revert", "add", "exit"};
         ArrayList<String> arrayList = new ArrayList<String>(List.of(list));
 
         String args = null;
         while (arrayList.lastIndexOf(args) == -1) {
-            System.out.println("Make a request, pleas: ");
+            System.out.println("________________________________________________________________________________________" + "\n" +
+                                "Ввндите интерисующий команду Меню:" + "\n" +
+                                "add - Добавление" + "\n" +
+                                "print - Вывод в консоль" + "\n" +
+                                "revert - удаление пред идущей строки" + "\n" +
+                                "exit - выход" + "\n" +
+                                "_______________________________________________________________________________________" +
+                                "\n");
             args = scan.nextLine().toLowerCase();
             switch (args) {
-                case "print": outConsole();
-                    break;
-                case "revert": System.out.println("revert");
-                    break;
-                case "add":
-                    try {
-                        saveStr();
-                        readFile();
-                    } catch (Exception e){
-                        System.out.println("Произошла ошибка при дабовлении!");
-                    }
-
-                    System.out.println(sequence);
+                case "print":
+                    printing();
+                    System.out.println("Нажмитн Enter, для продолжения: ");
+                    scan.nextLine();
                     menu();
                     break;
-                case "exit": System.exit(0);
+                case "revert":
+                    revert();
+                    System.out.println("Нажмитн Enter, для продолжения: ");
+                    scan.nextLine();
+                    menu();
                     break;
+                case "add":
+                    addLine();
+                    System.out.println("Нажмитн Enter, для продолжения: ");
+                    scan.nextLine();
+                    menu();
+                    break;
+                case "exit":
+                    System.exit(0);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + args);
             }
         }
     }
 
-    public static Deque<String> addStr(String str) {
-
-        Deque<String> seq = new ArrayDeque<String>(sequence);
-
-        if (seq.offerLast(str)) {
-            System.out.println("Выражение успешно добавлен!" + str);
-        } else {
-            System.out.println("Выражение не добавлен!");
-        }
-        return seq;
+    public  static void addLine() {
+        String str = scanTerminal();
+        arrayList.add(str);
+        System.out.printf("Секщка %s, добавлена!", str);
     }
 
-    public static  void saveStr() throws FileNotFoundException {
-        Scanner scanner = new Scanner(System.in);
-        String line = scanner.nextLine();
-        dataSave(line);
-
+    public  static String scanTerminal() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println(("Введите текст: "));
+        String str = scan.nextLine();
+        return str;
     }
 
-    public static void dataSave(String text) {
-
-        try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("save.txt", true))); // true добавит новые данные
-            out.println(text);
-            System.out.println("Запись прошла успешно!");
-            out.close();
-        } catch (IOException e) {
-            System.out.printf("Произошла ошибка: %t", e);
+    public  static void printing() {
+        for (int i = arrayList.size() - 1; i >= 0; i--) {
+            System.out.println(arrayList.get(i));
         }
     }
 
-    public static void readFile(){
-        String line;
-        try(BufferedReader br = new BufferedReader(new FileReader("save.txt"))) {
-            while((line = br.readLine()) != null){
-                addStr(line);
-            }
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-            System.out.println("Произошла ошибка: " + e);
-
-        }
+    public static void revert() {
+        ArrayDeque<String> deque = new ArrayDeque<>(arrayList);
+        String str = deque.removeLast();
+        System.out.printf("Элемент списка %s, удален из конца очереди! ", str);
+        addLine();
     }
-
-    public static void outConsole() {
-        ArrayList<String> line = new ArrayList<>(sequence);
-        for (int i = 0; i < line.size(); i++) {
-
-            System.out.println(line.get(i));
-        }
-
-
-    }
-
-
-
-
-
 }
