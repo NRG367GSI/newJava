@@ -6,7 +6,8 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        filterRam(addList());
+
+        menu();
     }
 
     public static ArrayList<Notebook> addList() {
@@ -84,12 +85,69 @@ public class Main {
         int minRam = scanner.nextInt();
         System.out.println("enter the maximum RAM value: ");
         int maxRam = scanner.nextInt();
-        for (Notebook element:list) {
+        for (Notebook element : list) {
             if ((minRam < element.volumeRam) && element.volumeRam < maxRam) {
                 System.out.println(element);
             }
         }
+    }
+    public static void filterStorage(ArrayList<Notebook> list) {
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("enter the minimum Storage value: ");
+        int minStorage = scanner2.nextInt();
+        System.out.println("enter the maximum Storage value: ");
+        int maxStorage = scanner2.nextInt();
+        for (Notebook element : list) {
+            if ((minStorage < element.storage) && element.storage < maxStorage) {
+                System.out.println(element);
+            }
+        }
+    }
 
+    public static void filterColor(ArrayList<Notebook> list) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Выберите, интересующею вас цвет" + "\n" +
+                                                "1 - white" + "\n" +
+                                                "2 - black" + "\n" +
+                                                "3 - gray" + "\n");
+        int point = scanner.nextInt();
+        switch (point) {
+            case 1:
+                for (Notebook element : list) {
+                    if (element.color == "white") {
+                        System.out.println(element);
+                    }
+                }
+                break;
+            case 2:
+                for (Notebook element : list) {
+                    if (element.color == "black") {
+                        System.out.println(element);
+                    }
+                }
+                break;
+            case 3:
+                for (Notebook element : list) {
+                    if (element.color == "gray") {
+                        System.out.println(element);
+                    }
+                }
+                break;
+        }
 
+    }
+
+    public static void menu() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Выберите фильтр:" + "\n" +
+                "1 - Объем ОЗУ" + "\n" +
+                "2 - Объем накопителя" + "\n" +
+                "3 - Цвет" + "\n");
+        int point = scanner.nextInt();
+        switch (point) {
+            case 1 -> filterRam(addList());
+            case 2 -> filterStorage(addList());
+            case 3 -> filterColor(addList());
+        }
     }
 }
