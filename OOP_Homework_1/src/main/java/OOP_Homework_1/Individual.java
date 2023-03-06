@@ -1,10 +1,21 @@
 package OOP_Homework_1;
 
-public class Individual {
+// Т.к. Вызов этого класса не подразумевается переведем его в разряд абстрактных
+public abstract class Individual {
 
     private String surname;
     private String name;
     private String birthday;
+
+    private static int count;
+
+    static {
+        count = 1;
+    }
+
+    static int setCount() {
+        return count++;
+    }
 
     public Individual(String surname, String name, String birthday) {
         this.surname = surname;

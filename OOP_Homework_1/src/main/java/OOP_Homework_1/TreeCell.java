@@ -54,7 +54,15 @@ public class TreeCell {
 
     @Override
     public String toString() {
-        return String.format("Дедушка: %s \n Отец: %s \n Сыновья: %s", ancestor, individual, descendant);
+        return String.format("Дедушка: %s \n \n Отец: %s \n\n Сыновья: %s", ancestor, individual, descendant);
+    }
+
+    public ArrayList<Woman> getDoughter() {
+        return doughter;
+    }
+
+    public Woman getWife() {
+        return wife;
     }
 }
 

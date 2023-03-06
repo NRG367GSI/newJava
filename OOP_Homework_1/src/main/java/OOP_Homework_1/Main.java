@@ -33,6 +33,7 @@ public class Main {
         Man son2 = new Man("Иванов", "Андрей", "10-10-2018", Man.Status.descendant);
         //System.out.println(son2);
         Woman daughter = new Woman("Иванова", "Наталья", "25-2-2020", Woman.Status.daughter);
+        //System.out.println(daughter);
 
         FamilyComposition family = new FamilyComposition();
         family.setHasband(dad);
@@ -42,7 +43,9 @@ public class Main {
         family.setDoughter(daughter);
         //System.out.println(family);
         TreeCell tree = new TreeCell(family);
-        System.out.println(tree);
+        //System.out.println(tree);
         TreeCell.familyTree.addLast(family);
+        System.out.println(tree);
+
     }
 }
